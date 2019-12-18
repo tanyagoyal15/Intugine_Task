@@ -1,19 +1,19 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import NavBar from './NavBar';
-import Shipments from './Shipments';
 import ShipmentState from './ShipmentState';
+import Shipments from './Shipments';
 import TimelineView from './TimelineView';
 
-export class Dashboard extends Component {
-    constructor(props) {
-        super(props);
+export default class App extends Component {
+    constructor(props, context) {
+        super(props, context);
         this.state = {
-            shipments : []
-        }
-
+            shipments: [],
+            clickedShipment: null
+        };
     }
 
-        componentDidMount() {
+    componentDidMount() {
             fetch('https://93870v1pgk.execute-api.ap-south-1.amazonaws.com/latest/shipments/mayank', {
                 method: 'POST',
                 headers: {
@@ -31,20 +31,24 @@ export class Dashboard extends Component {
         }
 
 
-
+    handleClick = (shipment) => {
+        this.setState({ clickedShipment: shipment })
+    }
 
     render() {
         return (
             <React.Fragment>
                 <NavBar />
-                <ShipmentState shipments={this.state.shipments}/>
+                <ShipmentState />
                 <div className="ShipmentContainer">
-                    <TimelineView />
-                    <Shipments shipments={this.state.shipments}/>
+                    <TimelineView
+                    clickedShipment={this.state.clickedShipment}/>
+                    <Shipments 
+                    shipments={this.state.shipments}
+                    handleClick={this.handleClick}/>
                 </div>
             </React.Fragment>
-        )
+        );
     }
 }
 
-export default Dashboard

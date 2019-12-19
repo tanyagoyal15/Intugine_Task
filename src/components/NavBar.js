@@ -15,7 +15,7 @@ export class NavBar extends Component {
                     <li>Home</li>
                     <li>Brands</li>
                     <li>Transporters</li>
-                    <li><img style={{ width: '25px', height: '25px', backgroundColor: '#ccc', borderRadius: '50%' , padding : '4px'}} src={profile} alt=" " /></li>
+                    <li><img src={profile} alt=" " /></li>
                 </ul>
             </div>
         )

@@ -14,22 +14,29 @@ export default class App extends Component {
     }
 
     componentDidMount() {
-            fetch('https://93870v1pgk.execute-api.ap-south-1.amazonaws.com/latest/shipments/mayank', {
+        const bearerToken = 'tTU3gFVUdP'
+        let name = prompt("Please enter your Name to Continue");
+        let email = prompt("Please enter your Email to Login");
+
+        if(name && email) {
+            fetch('https://93870v1pgk.execute-api.ap-south-1.amazonaws.com/latest/shipments/' + name, {
                 method: 'POST',
                 headers: {
                     "Content-type": 'application/json',
-                    'Authorization': 'Bearer tTU3gFVUdP'
+                    'Authorization': 'Bearer ' + bearerToken
                 },
                 body: JSON.stringify({
-                    'email': 'mayankmittal@intugine.com'
+                    'email': email
                 })
             })
-            .then(res => {
-                return res.json();
-            })
-            .then(res => this.setState({ shipments : res.data }))
+                .then(res => {
+                    return res.json();
+                })
+                .then(res => this.setState({ shipments: res.data }))
+        } else {
+            alert("Please add Name and Email to see Shipments")
         }
-
+    }
 
     handleClick = (shipment) => {
         this.setState({ clickedShipment: shipment })

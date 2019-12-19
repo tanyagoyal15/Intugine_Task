@@ -42,6 +42,7 @@ export default class App extends Component {
                 <ShipmentState shipments={this.state.shipments}/>
                 <div className="ShipmentContainer">
                     <TimelineView
+                    shipments={this.state.shipments}
                     clickedShipment={this.state.clickedShipment}/>
                     <Shipments 
                     shipments={this.state.shipments}

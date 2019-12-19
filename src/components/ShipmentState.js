@@ -30,7 +30,7 @@ export class ShipmentState extends Component {
         this.setState({ codes, loaded : true})
     }
      render() {
-         console.log(this.state)
+        //  console.log(this.state)
         return (
             <div className="shipmentstateview">
                 <ul>

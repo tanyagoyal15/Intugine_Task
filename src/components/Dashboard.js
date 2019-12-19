@@ -9,7 +9,7 @@ export default class App extends Component {
         super(props, context);
         this.state = {
             shipments: [],
-            clickedShipment: null
+            clickedShipment: null,
         };
     }
 
@@ -27,7 +27,7 @@ export default class App extends Component {
             .then(res => {
                 return res.json();
             })
-            .then(res => this.setState({ shipments : res.data}))
+            .then(res => this.setState({ shipments : res.data }))
         }
 
 
@@ -39,7 +39,7 @@ export default class App extends Component {
         return (
             <React.Fragment>
                 <NavBar />
-                <ShipmentState />
+                <ShipmentState shipments={this.state.shipments}/>
                 <div className="ShipmentContainer">
                     <TimelineView
                     clickedShipment={this.state.clickedShipment}/>

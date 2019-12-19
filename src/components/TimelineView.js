@@ -4,13 +4,17 @@ export class TimelineView extends Component {
     render() {
         return (
             <div className="timelineview">
-                {this.props.clickedShipment ? (this.props.clickedShipment.scan.map((item, idx) => {
-                    return <ul className="timeline">
-                        <li>{item.location}</li>
-                        <li>{item.time}</li>
-                    </ul>
+                <ul className="timeline">
+                    {this.props.clickedShipment ? (this.props.clickedShipment.scan.map((item, idx) => {
+                        return <li className="box">
+                            <div style={{'border' : '1px solid #000'}}>
+                                <p>{item.location}</p>
+                                <p>{item.time}</p>
+                            </div>
+                        </li>
                 }
                 )) : <h4>Click on the Shipment to view Timeline</h4>}
+                </ul>
             </div>
         )
     }

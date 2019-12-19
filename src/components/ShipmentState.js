@@ -2,44 +2,59 @@ import React, { Component } from 'react'
 
 export class ShipmentState extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            codes: {
+                DEL : 0,
+                INT : 0,
+                OOD : 0,
+                DEX : 0,
+                NFI : 0,
+                UND : 0
+            },
+            loaded : false
+        };
+    }
 
-    // status = (code) => {
-    //     let delcount = 0;
-    //     if (code === 'DEL') {
-    //         delcount++;
-    //         // console.log(delcount);
-    //         // return <p>DEL</p>
-    //     }
-    //     if (code === 'INT') {
-    //         // intcount++;
-    //         // return <p>INT</p>
-    //     }
-    //     if (code === 'OOD') {
-    //         // oodcount++;
-    //         // return <p>OOD</p>
-    //     }
-    //     if (code === 'DEX') {
-    //         // dexcount++;
-    //         // return <p>DEX</p>
-    //     }
-    //     if (code === 'NFI') {
-    //         // nficount++;
-    //         // return <p>NFI</p>
-    //     }
-    //     // console.log(delcount)
-    //     // return delcount;
-    // }
-
-
-
-    render() {
+    componentDidUpdate() {
+        if(this.state.loaded) return;
+        let codes = this.state.codes;
+        this.props.shipments.forEach(shipment => {
+            const { current_status_code } = shipment;
+            codes = {
+                ...codes,
+                [current_status_code] : codes[current_status_code] + 1
+            };
+        });
+        this.setState({ codes, loaded : true})
+    }
+     render() {
+         console.log(this.state)
         return (
             <div className="shipmentstateview">
-                {/* { 
-                    this.props.shipments.map((shipment) => {
-                        // let delcount = this.status(shipment.current_status_code);   
-                    })                   
-                } */}
+                <ul>
+                    <li>
+                        <h6>DEL</h6>
+                        <h2>{this.state.codes.DEL}</h2>
+                    </li>
+                    <li>
+                        <h6>INT</h6>
+                        <h2>{this.state.codes.INT}</h2>
+                    </li>
+                    <li>
+                        <h6>OOD</h6>
+                        <h2>{this.state.codes.OOD}</h2>
+                    </li>
+                    <li>
+                        <h6>DEX</h6>
+                        <h2>{this.state.codes.DEX}</h2>
+                    </li>
+                    <li>
+                        <h6>UND</h6>
+                        <h2>{this.state.codes.UND}</h2>
+                    </li>
+                </ul>
             </div>
         )
     }

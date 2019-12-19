@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 export class Shipments extends Component {
     render() {
         return (
-            <div className="shipmentsview">
-                <ul style={{ "listStyle": "none", "padding": "0" , "display" : "flex" , "flexDirection" : "row" , "justifyContent" : "space-around"}}>
+            <div className="shipments-container">
+                <ul className="shipmentshead">
                     <li>AWB Number</li>
                     <li>Transporter</li>
                     <li>Source</li>
@@ -18,11 +18,11 @@ export class Shipments extends Component {
                     {this.props.shipments.map((shipment, idx) => {
                         return <li key={shipment._id}>
                             <ul className="shipmentslist" onClick={(e) => this.props.handleClick(shipment)}>
-                                <li>{shipment.awbno}</li>
+                                <li>#{shipment.awbno}</li>
                                 <li>{shipment.carrier}</li>
                                 <li>{shipment.from}</li>
                                 <li>{shipment.to}</li>
-                                <li>{shipment.awbno}</li>
+                                <li>{shipment.carrier}</li>
                                 <li>{shipment.pickup_date}</li>
                                 <li>{shipment.time}</li>
                                 <li>{shipment.current_status}</li>

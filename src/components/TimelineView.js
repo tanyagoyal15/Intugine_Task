@@ -20,7 +20,7 @@ export class TimelineView extends Component {
                             })}
                             <img src={destination} alt=" " />
                         </div>
-                ) : <h4>Click on the Shipment to view Timeline</h4>}
+                ) : <h4 style={{'textAlign' : 'center'}}>Click on the Shipment to view Timeline</h4>}
                 </ul>
             </div>
         )

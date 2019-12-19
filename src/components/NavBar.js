@@ -15,6 +15,7 @@ export class NavBar extends Component {
                     <li>Home</li>
                     <li>Brands</li>
                     <li>Transporters</li>
+                    <li>{this.props.name}</li>
                     <li><img src={profile} alt=" " /></li>
                 </ul>
             </div>
